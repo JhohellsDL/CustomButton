@@ -14,20 +14,22 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.buttonPressed.setOnClickListener {
             isButtonPressed = !isButtonPressed
-            if (isButtonPressed) {
-                binding.buttonPressed.text = "ON"
-                binding.buttonPressed.setTextColor(getColor(R.color.green))
-                animatedProgressBar(binding.progressBar, 0, 100)
-            } else {
-                binding.buttonPressed.text = "OFF"
-                binding.buttonPressed.setTextColor(getColor(R.color.gray))
-                animatedProgressBar(binding.progressBar, 100, 0)
-            }
+            setStateButton()
         }
+    }
 
+    private fun setStateButton() {
+        if (isButtonPressed) {
+            binding.buttonPressed.text = "ON"
+            binding.buttonPressed.setTextColor(getColor(R.color.green))
+            animatedProgressBar(binding.progressBar, 0, 100)
+        } else {
+            binding.buttonPressed.text = "OFF"
+            binding.buttonPressed.setTextColor(getColor(R.color.gray))
+            animatedProgressBar(binding.progressBar, 100, 0)
+        }
     }
 
     private fun animatedProgressBar(progressBar: ProgressBar, start: Int, end: Int) {
@@ -35,4 +37,5 @@ class MainActivity : AppCompatActivity() {
         progressAnimator.duration = 1000
         progressAnimator.start()
     }
+
 }
